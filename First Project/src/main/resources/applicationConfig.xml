@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="mcDonaldFactory" class="ru.germandilio.firstproject.McDonaldFactory"/>
-    <bean id="kFCFactory" class="ru.germandilio.firstproject.KFCFactory"/>
+    <context:property-placeholder location="classpath:factory.properties"/>
+
+    <bean id="mcDonaldFactory"
+          class="ru.germandilio.firstproject.McDonaldFactory"
+          scope="prototype">
+        <constructor-arg index="0" ref="energySupplier"/>
+        <property name="address" value="${mcDonaldFactory.address}"/>
+        <property name="email" value="${mcDonaldFactory.email}"/>
+    </bean>
+
+    <bean id="kFCFactory" class="ru.germandilio.firstproject.KFCFactory">
+        <constructor-arg ref="energySupplier"/>
+    </bean>
+
+    <bean id="energySupplier" class="ru.germandilio.firstproject.SimpleEnergySupplier">
+        <constructor-arg index="0" value="100"/>
+    </bean>
 
 </beans>
