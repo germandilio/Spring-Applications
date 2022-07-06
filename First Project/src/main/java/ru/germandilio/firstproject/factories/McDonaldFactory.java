@@ -1,4 +1,6 @@
-package ru.germandilio.firstproject;
+package ru.germandilio.firstproject.factories;
+
+import ru.germandilio.firstproject.suppiers.EnergySupplier;
 
 public class McDonaldFactory implements Factory {
     private String address;
@@ -32,5 +34,19 @@ public class McDonaldFactory implements Factory {
         energySupplier.getEnergy(amountOfEnergy);
 
         return String.format("New Big Tasty. Energy used: %d", amountOfEnergy);
+    }
+
+    /**
+     * Custom init method (called after Spring initialize object and construct all dependencies)
+     */
+    public void init() {
+
+    }
+
+    /**
+     * Custom destroy method, called before Spring destroy object
+     */
+    public void destroy() {
+
     }
 }

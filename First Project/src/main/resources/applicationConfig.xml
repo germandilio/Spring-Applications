@@ -6,19 +6,22 @@
 
     <context:property-placeholder location="classpath:factory.properties"/>
 
+    <!-- destroy-method won't be called, because it is prototyped -->
     <bean id="mcDonaldFactory"
-          class="ru.germandilio.firstproject.McDonaldFactory"
-          scope="prototype">
+          class="ru.germandilio.firstproject.factories.McDonaldFactory"
+          scope="prototype"
+          init-method="init"
+          destroy-method="destroy">
         <constructor-arg index="0" ref="energySupplier"/>
         <property name="address" value="${mcDonaldFactory.address}"/>
         <property name="email" value="${mcDonaldFactory.email}"/>
     </bean>
 
-    <bean id="kFCFactory" class="ru.germandilio.firstproject.KFCFactory">
+    <bean id="kfcFactory" class="ru.germandilio.firstproject.factories.KFCFactory">
         <constructor-arg ref="energySupplier"/>
     </bean>
 
-    <bean id="energySupplier" class="ru.germandilio.firstproject.SimpleEnergySupplier">
+    <bean id="energySupplier" class="ru.germandilio.firstproject.suppiers.SimpleEnergySupplier">
         <constructor-arg index="0" value="100"/>
     </bean>
 

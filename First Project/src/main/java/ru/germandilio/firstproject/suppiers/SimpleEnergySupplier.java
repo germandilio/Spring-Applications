@@ -1,4 +1,4 @@
-package ru.germandilio.firstproject;
+package ru.germandilio.firstproject.suppiers;
 
 public class SimpleEnergySupplier implements EnergySupplier {
     private int energy;

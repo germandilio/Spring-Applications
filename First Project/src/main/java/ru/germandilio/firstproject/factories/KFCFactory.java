@@ -1,6 +1,7 @@
-package ru.germandilio.firstproject;
+package ru.germandilio.firstproject.factories;
 
-import java.util.Random;
+import org.springframework.stereotype.Component;
+import ru.germandilio.firstproject.suppiers.EnergySupplier;
 
 public class KFCFactory implements Factory {
     private final EnergySupplier energySupplier;
