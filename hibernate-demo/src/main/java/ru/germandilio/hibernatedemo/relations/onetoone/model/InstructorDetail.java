@@ -2,9 +2,11 @@ package ru.germandilio.hibernatedemo.relations.onetoone.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -19,6 +21,14 @@ public class InstructorDetail {
 
     @Column(name = "hobby")
     private String hobby;
+
+    /**
+     * Example of bidirectional one-to-one mapping. This has a dramatic performance impact and also don't support
+     * Lazy fetch, so it is better to use @MapsId, to share the same id on the connected instances.
+     */
+    @ToString.Exclude
+    @OneToOne(mappedBy = "detail", cascade = CascadeType.ALL)
+    private Instructor instructor;
 
     public InstructorDetail() {
     }

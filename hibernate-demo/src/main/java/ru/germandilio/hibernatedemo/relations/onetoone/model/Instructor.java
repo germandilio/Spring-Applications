@@ -2,9 +2,11 @@ package ru.germandilio.hibernatedemo.relations.onetoone.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -23,7 +25,7 @@ public class Instructor {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail detail;
 
