@@ -1,4 +1,4 @@
-package ru.germandilio.hibernatedemo.relations.onetoone.model;
+package ru.germandilio.hibernatedemo.relations.onetomany.model;
 
 import lombok.Getter;
 import lombok.Setter;

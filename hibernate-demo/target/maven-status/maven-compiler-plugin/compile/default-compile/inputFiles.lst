@@ -1,0 +1,15 @@
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/RetrieveCoursesByInstructorDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/crud/HibernateSaveAndLoad.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetoone/DeleteDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/model/InstructorDetail.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetoone/model/Instructor.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetoone/CreateDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/CreateDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetoone/model/InstructorDetail.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetoone/BidirectionalDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/crud/HibernateUpdateObjects.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/model/Instructor.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/DeleteCourseDemo.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/crud/HibernateDeleteObject.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/relations/onetomany/model/Course.java
+/Users/germandilio/Documents/GitHub/Spring-Applications/hibernate-demo/src/main/java/ru/germandilio/hibernatedemo/crud/model/Student.java

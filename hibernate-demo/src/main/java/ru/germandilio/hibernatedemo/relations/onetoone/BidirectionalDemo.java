@@ -27,9 +27,13 @@ public class BidirectionalDemo {
 
                 System.out.println("detail.getInstructor() = " + detail.getInstructor());
 
-                // check cascading delete
+                // check NO cascading delete
                 // try to delete detail (also it should delete instructor)
-                // session.delete(detail);
+
+                // prepare for deletion (otherwise it would be re-saved by hibernate)
+                detail.getInstructor().setDetail(null);
+
+                session.delete(detail);
 
                 session.getTransaction().commit();
                 System.out.println("Done!!!");
