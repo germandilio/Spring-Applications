@@ -38,4 +38,18 @@ CREATE TABLE `course` (
                               REFERENCES `instructor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE `review` (
+                          `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                          `course_id` int(11) DEFAULT NULL,
+                          `rating` int(11) DEFAULT NULL,
+                          `comment` varchar(45) DEFAULT NULL,
+                          `created_at` datetime DEFAULT NULL,
+                          `updated_at` datetime DEFAULT NULL,
+
+                          KEY `FK_COURSE_idx` (`course_id`),
+                          CONSTRAINT `FK_COURSE` FOREIGN KEY (`course_id`)
+                              REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
 SET FOREIGN_KEY_CHECKS = 1;
