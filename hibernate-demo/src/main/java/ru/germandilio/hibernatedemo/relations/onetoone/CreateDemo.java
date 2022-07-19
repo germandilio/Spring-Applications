@@ -13,13 +13,13 @@ public class CreateDemo {
                 .addAnnotatedClass(InstructorDetail.class)
                 .buildSessionFactory()) {
 
+            // create instructor his and detail
+            var instructor = new Instructor("Denis", "Zavedeev", "email@edu.hse.ru");
+            var instructorDetail = new InstructorDetail("http://www.yotube.com", "making pull requests");
+            instructor.setDetail(instructorDetail);
+
             try(var session = sessionFactory.getCurrentSession()) {
                 session.beginTransaction();
-
-                // create instructor
-                var instructor = new Instructor("Denis", "Zaedeev", "email@edu.hse.ru");
-                var instructorDetail = new InstructorDetail("http://www.yotube.com", "making pull requests");
-                instructor.setDetail(instructorDetail);
 
                 session.save(instructor);
 
