@@ -10,7 +10,9 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
         <!-- Different schemas are required for different part of project       -->
-        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-one-to-many?useSSL=false&amp;serverTimezone=UTC</property>
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-one-to-one?useSSL=false&amp;serverTimezone=UTC</property>-->
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-one-to-many?useSSL=false&amp;serverTimezone=UTC</property>-->
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate-many-to-many?useSSL=false&amp;serverTimezone=UTC</property>
 
         <property name="connection.username">hbstudent</property>
         <property name="connection.password">hbstudent</property>
