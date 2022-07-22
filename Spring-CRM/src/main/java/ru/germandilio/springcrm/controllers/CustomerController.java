@@ -11,7 +11,6 @@ import ru.germandilio.springcrm.entity.Customer;
 import ru.germandilio.springcrm.service.CustomerService;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
