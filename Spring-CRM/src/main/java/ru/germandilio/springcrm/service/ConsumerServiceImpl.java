@@ -1,20 +1,22 @@
 package ru.germandilio.springcrm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.germandilio.springcrm.dao.CustomerDAO;
 import ru.germandilio.springcrm.entity.Customer;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ConsumerServiceImpl implements CustomerService {
     private CustomerDAO customerDAO;
 
     @Autowired
-    public void setCustomerDAO(@Qualifier("customerDAOImpl") CustomerDAO customerDAO) {
+    public void setCustomerDAO(CustomerDAO customerDAO) {
+        Map<String, String> map = new HashMap<>();
         this.customerDAO = customerDAO;
     }
 
