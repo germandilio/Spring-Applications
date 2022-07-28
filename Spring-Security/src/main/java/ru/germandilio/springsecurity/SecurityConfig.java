@@ -1,38 +1,53 @@
 package ru.germandilio.springsecurity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private DataSource securityDataSource;
+
+    @Autowired
+    public void setSecurityDataSource(@Qualifier("securityDataSource") DataSource securityDataSource) {
+        this.securityDataSource = securityDataSource;
+    }
+
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        UserDetails employee = User.
-                withDefaultPasswordEncoder()
-                .username("employee")
-                .password("employee")
-                .roles("EMPLOYEE")
-                .build();
+    public UserDetailsManager configureUsers() {
+        return new JdbcUserDetailsManager(securityDataSource);
+    }
 
-        UserDetails manager = User
-                .withDefaultPasswordEncoder()
-                .username("manager")
-                .password("manager")
-                .roles("MANAGER")
-                .build();
+    @Bean
+    public SecurityFilterChain customLoginPageFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .authorizeRequests()
+                .antMatchers("/leaders/**").hasRole("MANAGER")
+                .antMatchers("/systems/**").hasRole("ADMIN")
+                .antMatchers("/").hasRole("EMPLOYEE")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied")
+                .and()
+                .formLogin()
+                .loginPage("/login/")
+                .loginProcessingUrl("/login/processing")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
 
-        UserDetails user = User
-                .withDefaultPasswordEncoder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(employee, manager, user);
+        return httpSecurity.build();
     }
 }

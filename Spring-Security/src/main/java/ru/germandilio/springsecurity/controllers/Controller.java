@@ -9,4 +9,9 @@ public class Controller {
     public ModelAndView index() {
         return new ModelAndView("index");
     }
+
+    @GetMapping("/access-denied")
+    public ModelAndView accessDeniedPage() {
+        return new ModelAndView("errors/access-denied");
+    }
 }
