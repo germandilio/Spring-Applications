@@ -18,13 +18,10 @@ public class LoggingAspect {
     @Pointcut("execution(* ru.germandilio.springcrm.controllers.*.*(..))")
     public void logControllers() {}
 
-    @Pointcut("execution(* ru.germandilio.springcrm.dao.*.*(..))")
-    public void logDAO() {}
-
     @Pointcut("execution(* ru.germandilio.springcrm.service.*.*(..))")
     public void logService() {}
 
-    @Pointcut("logControllers() || logDAO() || logService()")
+    @Pointcut("logControllers() || logService()")
     public void logAppFlow() {}
 
     @Before("logAppFlow()")

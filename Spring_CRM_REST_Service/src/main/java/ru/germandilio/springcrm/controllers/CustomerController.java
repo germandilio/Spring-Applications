@@ -35,6 +35,11 @@ public class CustomerController {
         return customer;
     }
 
+    @GetMapping("/customers/search/{name}")
+    public List<Customer> searchCustomers(@PathVariable String name) {
+        return customerService.searchCustomers(name);
+    }
+
     @PostMapping("/customers")
     public Customer saveCustomer(@RequestBody Customer customer) {
         customerService.saveCustomer(customer);

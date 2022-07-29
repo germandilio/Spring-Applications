@@ -1,58 +1,74 @@
 package ru.germandilio.springcrm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
-import ru.germandilio.springcrm.dao.CustomerDAO;
+import org.springframework.web.client.RestTemplate;
 import ru.germandilio.springcrm.entity.Customer;
 
-import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.logging.Logger;
 
 @Service
 public class ConsumerServiceImpl implements CustomerService {
-    private CustomerDAO customerDAO;
+    private static final Logger logger = Logger.getLogger(ConsumerServiceImpl.class.getName());
+
+    private RestTemplate restTemplate;
+    private String customersRestUrl;
 
     @Autowired
-    public void setCustomerDAO(CustomerDAO customerDAO) {
-        Map<String, String> map = new HashMap<>();
-        this.customerDAO = customerDAO;
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @Autowired
+    public void setCustomersRestUrl(@Value("${crm.api.customers.url}") String customersRestUrl) {
+        this.customersRestUrl = customersRestUrl;
     }
 
     @Override
-    @Transactional
     public Customer getCustomer(int id) {
-        return customerDAO.getCustomer(id);
+        var customers = restTemplate.exchange(customersRestUrl + "/" + id, HttpMethod.GET, null,
+                Customer.class);
+
+        logger.info("get customer - successfully");
+        return customers.getBody();
     }
 
     @Override
-    @Transactional
     public void saveCustomer(Customer customer) {
-        customerDAO.saveCustomer(customer);
+        var savedCustomer = restTemplate.postForEntity(customersRestUrl, customer, String.class);
+        logger.info("customer save - successfully: " + savedCustomer.getBody());
     }
 
     @Override
-    @Transactional
     public void updateCustomer(Customer customer) {
-        customerDAO.updateCustomer(customer);
+        restTemplate.put(customersRestUrl, customer);
+        logger.info("customer update - successfully.");
     }
 
     @Override
-    @Transactional
     public void deleteCustomer(int id) {
-        customerDAO.deleteCustomer(id);
+        restTemplate.delete(customersRestUrl + "/" + id);
+        logger.info("customer delete - successfully.");
     }
 
     @Override
-    @Transactional
     public List<Customer> getCustomers() {
-        return customerDAO.getCustomers();
+        var customers = restTemplate.exchange(customersRestUrl, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Customer>>() {});
+
+        return customers.getBody();
     }
 
     @Override
-    @Transactional
     public List<Customer> searchCustomers(String searchName) {
-        return customerDAO.searchCustomers(searchName);
+        var customers = restTemplate.exchange(customersRestUrl + "/search/" + searchName, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Customer>>() {});
+
+        logger.info("customer search - successfully.");
+        return customers.getBody();
     }
 }

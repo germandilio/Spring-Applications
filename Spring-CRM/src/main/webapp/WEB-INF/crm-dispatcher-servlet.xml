@@ -3,7 +3,6 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,12 +10,11 @@
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd
-            http://www.springframework.org/schema/tx
-            http://www.springframework.org/schema/tx/spring-tx.xsd
             http://www.springframework.org/schema/aop
             https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="ru.germandilio.springcrm"/>
+    <context:property-placeholder location="classpath:application.properties"/>
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,38 +22,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <mvc:annotation-driven/>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
+
+    <mvc:annotation-driven />
 
     <aop:aspectj-autoproxy />
-
-    <!--  Database data source  -->
-    <bean id="crmDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring-crm?useSSL=false"/>
-        <property name="user" value="germandilio"/>
-        <property name="password" value="German2002"/>
-
-        <property name="minPoolSize" value="5"/>
-        <property name="maxPoolSize" value="20"/>
-        <property name="maxIdleTime" value="30000"/>
-    </bean>
-
-    <!--  Hibernate session factory  -->
-    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="crmDataSource"/>
-        <property name="packagesToScan" value="ru.germandilio.springcrm.entity"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
-            </props>
-        </property>
-    </bean>
-
-    <!--  Hibernate transaction manager  -->
-    <bean id="myTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernateSessionFactory"/>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="myTransactionManager"/>
-
 </beans>

@@ -1,32 +1,20 @@
 package ru.germandilio.springcrm.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@ToString
-@Setter
-@Getter
-@Entity
-@Table(name = "customer")
+@Data
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotNull(message = "is required")
-    @Column(name = "first_name")
     private String firstName;
 
     @NotNull(message = "is required")
-    @Column(name = "last_name")
     private String lastName;
 
     @NotNull(message = "is required")
-    @Column(name = "email")
     private String email;
 
     public Customer() {
