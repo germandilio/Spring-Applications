@@ -10,4 +10,9 @@ public class HomeController {
     public ModelAndView homePage() {
         return new ModelAndView("index");
     }
+
+    @GetMapping("/access-denied")
+    public ModelAndView accessDeniedPage() {
+        return new ModelAndView("access-denied");
+    }
 }

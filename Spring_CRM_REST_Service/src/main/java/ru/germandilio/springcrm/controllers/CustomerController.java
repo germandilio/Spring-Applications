@@ -49,7 +49,7 @@ public class CustomerController {
     @PutMapping("/customers")
     public Customer updateCustomer(@RequestBody Customer customer) {
         customerService.updateCustomer(customer);
-        return customer;
+        return customerService.getCustomer(customer.getId());
     }
 
     @DeleteMapping("/customers/{customerId}")

@@ -50,4 +50,11 @@ public class CustomersServiceImpl implements CustomersService {
     public void updateCustomer(Customer customer) {
         crmRestServiceTemplate.put(url, customer);
     }
+
+    @Override
+    public List<Customer> searchCustomers(String searchName) {
+        var customers = crmRestServiceTemplate.exchange(url + "/search/" + searchName, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Customer>>() {});
+        return customers.getBody();
+    }
 }
