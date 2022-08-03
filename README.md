@@ -11,8 +11,16 @@ Part 2: Reengineering
 - I have split app into two parts: [CRM REST Service](https://github.com/germandilio/Spring-Applications/tree/255600e011e8bf73a3095b4142b6d8cc3961a8b3/Spring_CRM_REST_Service) and [Web app](https://github.com/germandilio/Spring-Applications/tree/23b6913e7e7ce7d8ed8165394bc23b7a3f68da3e/Spring-CRM)
 
 Part 3: Using Spring Boot in web app. Change JSP to Thymeleaf. Add Spring Security.
-- [Web app](https://github.com/germandilio/Spring-Applications/tree/7793fb9a92b02cd186910febd9eb38a9938b80cf/Spring-CRM)
+- [Web app](https://github.com/germandilio/Spring-Applications/tree/7793fb9a92b02cd186910febd9eb38a9938b80cf/Thymeleaf_Demo)
 - REST service doesn't changed
+
+## Screenshots ##
+
+<img src=".images/Customers.png" alt="Dialog" style="height: 480px; width:800px;"/>
+<img src=".images/Search.png" alt="Dialog" style="height: 480px; width:800px;"/>
+<img src=".images/Save.png" alt="Dialog" style="height: 480px; width:800px;"/>
+<img src=".images/Update.png" alt="Dialog" style="height: 480px; width:800px;"/>
+
 
 ## Topics ##
 
